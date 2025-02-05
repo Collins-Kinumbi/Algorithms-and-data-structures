@@ -38,4 +38,4 @@ function twoSumHush(arr, target) {
   return [];
 }
 
-console.log(twoSum(nums, target));
+console.log(twoSumHush(nums, target));
