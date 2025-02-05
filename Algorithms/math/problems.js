@@ -28,12 +28,12 @@ console.log(twoSum(nums, target));
 
 function twoSumHush(arr, target) {
   const hash = {};
-  for (let i = 0; i < arr.length; i++) {
-    const currentNum = arr[i];
+  for (let index = 0; index < arr.length; index++) {
+    const currentNum = arr[index];
     if (hash[target - currentNum] !== undefined) {
-      return [hash[target - currentNum], i];
+      return [hash[target - currentNum], index];
     }
-    hash[currentNum] = i;
+    hash[currentNum] = index;
   }
   return [];
 }
