@@ -28,3 +28,5 @@ function binarySearch(arr, target) {
 console.log(binarySearch([-5, 2, 4, 6, 10], -5)); //0
 console.log(binarySearch([-5, 2, 4, 6, 10], -1)); //-1
 console.log(binarySearch([-5, 2, 4, 6, 10], 10)); //4
+
+// Big - O = O(logn)
