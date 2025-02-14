@@ -66,3 +66,29 @@ function logNumberTo(num, i = 1) {
 }
 
 // logNumberTo(15);
+
+/*
+Sum of an Array
+Write a recursive function that takes an array of numbers and returns the sum of all elements.
+*/
+const nums = [1, 2, 3, 4, 5];
+//without recursion
+/*
+function sum(arr) {
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    total += arr[i];
+  }
+  return total;
+}
+
+console.log(sum(nums));
+*/
+
+//With recursion
+function sum(arr, i = 0) {
+  if (i >= arr.length) return 0;
+  return arr[i] + sum(arr, i + 1);
+}
+
+console.log(sum(nums));
