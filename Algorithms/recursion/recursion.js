@@ -40,3 +40,29 @@ function sumNumbers(arr) {
 
 // console.log(sumNumbers(nums1));
 // console.log(sumNumbers(nums2));
+
+///////////////////////////////////////////////
+
+// Without recursion
+/*
+function logNumberTo(num) {
+  if (num <= 0) {
+    console.log(0);
+    return;
+  }
+  for (let i = 1; i <= num; i++) {
+    console.log(i);
+  }
+}
+
+logNumberTo(10);
+*/
+
+// With recusrion
+function logNumberTo(num, i = 1) {
+  if (i > num) return;
+  console.log(i);
+  logNumberTo(num, i + 1);
+}
+
+// logNumberTo(15);
