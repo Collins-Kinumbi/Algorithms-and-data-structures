@@ -5,8 +5,8 @@ class CircularQueue {
     this.items = new Array(capacity);
     this.capacity = capacity;
     this.currentLength = 0;
-    this.rear = -1;
-    this.front = -1;
+    this.rear = 0;
+    this.front = 0;
   }
 
   isFull() {
@@ -19,12 +19,9 @@ class CircularQueue {
 
   enqueue(element) {
     if (!this.isFull()) {
-      this.rear = (this.rear + 1) % this.capacity;
       this.items[this.rear] = element;
+      this.rear = (this.rear + 1) % this.capacity;
       this.currentLength += 1;
-      if (this.front === -1) {
-        this.front = this.rear;
-      }
     }
   }
 
@@ -54,13 +51,14 @@ class CircularQueue {
     if (this.isEmpty()) {
       console.log("Queue is empty");
     } else {
-      let i;
+      let i = this.front;
       let str = "";
-      for (i = this.front; i !== this.rear; i = (i + 1) % this.capacity) {
+
+      for (let count = 0; count < this.currentLength; count++) {
         str += this.items[i] + " ";
+        i = (i + 1) % this.capacity;
       }
-      str += this.items[i];
-      console.log(str);
+      console.log(str.trim());
     }
   }
 }
