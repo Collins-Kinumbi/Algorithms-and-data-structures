@@ -31,14 +31,33 @@ class LinkedList {
     }
     this.size += 1;
   }
+
+  print() {
+    if (this.isEmpty()) {
+      console.log("List is empty");
+    } else {
+      let current = this.head;
+      let values = "";
+      while (current) {
+        values += `${current.value} `;
+        current = current.next;
+      }
+      console.log(values);
+    }
+  }
 }
 
 const list = new LinkedList();
 
 console.log("List is empty? " + list.isEmpty());
 console.log("List size: " + list.getSize());
+
+list.print();
+
 list.prepend(5);
 list.prepend(10);
 list.prepend(15);
 
-console.log(list);
+// console.log(list);
+
+list.print();
