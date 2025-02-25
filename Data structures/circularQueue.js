@@ -35,7 +35,7 @@ class CircularQueue {
 
     if (this.isEmpty()) {
       this.front = 0;
-      this.rear = -0;
+      this.rear = 0;
     }
     return item;
   }
