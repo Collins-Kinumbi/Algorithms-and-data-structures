@@ -23,7 +23,7 @@ class LinkedList {
 
   // O(1)
   prepend(value) {
-    if (!value) return; // Avoid adding undefined/null values
+    if (value === undefined || value === null) return; // Avoid adding undefined/null values
     const node = new Node(value); // Step 1: Create a new node
 
     if (!this.isEmpty()) {
@@ -37,7 +37,7 @@ class LinkedList {
 
   // O(n)
   append(value) {
-    if (!value) return; // Avoid adding undefined/null values
+    if (value === undefined || value === null) return; // Avoid adding undefined/null values
     const node = new Node(value); // Step 1: Create a new node
 
     if (this.isEmpty()) {
@@ -56,7 +56,7 @@ class LinkedList {
   }
 
   insert(value, index) {
-    if (!value) return;
+    if (value === undefined || value === null) return; // Avoid adding undefined/null values
 
     if (index < 0 || index > this.size) return;
     if (index === 0) {
@@ -93,6 +93,8 @@ class LinkedList {
   }
 
   removeValue(value) {
+    if (value === undefined || value === null) return; // Avoid adding undefined/null values
+
     if (this.isEmpty()) return null;
 
     if (this.head.value === value) {
@@ -118,6 +120,8 @@ class LinkedList {
     if (this.isEmpty()) {
       return -1;
     }
+    if (value === undefined || value === null) return; // Avoid adding undefined/null values
+
     let i = 0;
     let current = this.head;
     while (current) {
