@@ -23,32 +23,41 @@ class LinkedList {
 
   // O(1)
   prepend(value) {
-    const node = new Node(value);
-    if (this.isEmpty()) {
-      this.head = node;
-    } else {
-      node.next = this.head;
-      this.head = node;
+    if (!value) return; // Avoid adding undefined/null values
+    const node = new Node(value); // Step 1: Create a new node
+
+    if (!this.isEmpty()) {
+      node.next = this.head; // Step 2: If list is not empty, make new node next point to head
     }
-    this.size += 1;
+
+    this.head = node; // Step 3: Make new node equal to head
+
+    this.size += 1; // Step 4: Increase size of the list by one
   }
 
   // O(n)
   append(value) {
-    const node = new Node(value);
+    if (!value) return; // Avoid adding undefined/null values
+    const node = new Node(value); // Step 1: Create a new node
+
     if (this.isEmpty()) {
-      this.head = node;
-    } else {
-      let previous = this.head;
-      while (previous.next) {
-        previous = previous.next;
-      }
-      previous.next = node;
+      this.head = node; // Step 2: If list is empty, make new node the head
+      return;
     }
-    this.size += 1;
+    let previous = this.head; // Step 3: Start from the head
+
+    while (previous.next) {
+      // Step 4: Traverse the list
+      previous = previous.next;
+    }
+    previous.next = node; // Step 5: Attach new node at the end
+
+    this.size += 1; // Step 6: Increase the size of the list
   }
 
   insert(value, index) {
+    if (!value) return;
+
     if (index < 0 || index > this.size) return;
     if (index === 0) {
       this.prepend(value);
@@ -118,6 +127,7 @@ class LinkedList {
       current = current.next;
       i++;
     }
+    return -1;
   }
 
   reverse() {
