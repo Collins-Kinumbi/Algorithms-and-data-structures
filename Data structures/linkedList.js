@@ -42,16 +42,15 @@ class LinkedList {
 
     if (this.isEmpty()) {
       this.head = node; // Step 2: If list is empty, make new node the head
-      return;
-    }
-    let previous = this.head; // Step 3: Start from the head
+    } else {
+      let previous = this.head; // Step 3: Start from the head
 
-    while (previous.next) {
-      // Step 4: Traverse the list
-      previous = previous.next;
+      while (previous.next) {
+        // Step 4: Traverse the list
+        previous = previous.next;
+      }
+      previous.next = node; // Step 5: Attach new node at the end
     }
-    previous.next = node; // Step 5: Attach new node at the end
-
     this.size += 1; // Step 6: Increase the size of the list
   }
 
