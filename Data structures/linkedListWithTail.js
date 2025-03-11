@@ -181,16 +181,17 @@ class LinkedList {
 
 const list = new LinkedList();
 
-list.prepend(8);
-list.prepend(2);
-list.prepend(4);
-list.append(3);
-list.append(1);
-list.insert(5, 4);
-console.log(list.removeFrom(5));
-console.log(list.removeValue(1));
-list.print();
-list.reverse();
-list.print();
+// list.prepend(8);
+// list.prepend(2);
+// list.prepend(4);
+// list.append(3);
+// list.append(1);
+// list.insert(5, 4);
+// console.log(list.removeFrom(5));
+// console.log(list.removeValue(1));
+// list.print();
+// list.reverse();
+// list.print();
 
-console.log(list);
+// console.log(list);
+export default LinkedList;
