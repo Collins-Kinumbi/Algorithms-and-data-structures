@@ -77,13 +77,14 @@ class LinkedList {
   removeFrom(index) {
     if (index < 0 || index >= this.size) return null;
 
+    let removedNode;
     if (this.size === 1) {
+      removedNode = this.head;
       this.head = null;
       this.tail = null;
-    }
-
-    let removedNode;
-    if (index === 0) {
+      this.size -= 1;
+      return removedNode.value;
+    } else if (index === 0) {
       removedNode = this.head;
       this.head = this.head.next;
     } else if (index === this.size - 1) {
