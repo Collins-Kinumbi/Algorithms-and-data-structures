@@ -1,5 +1,51 @@
 "use strict";
+import LinkedList from "./linkedListWithTail.js";
 
+class Queue {
+  constructor() {
+    this.list = new LinkedList();
+  }
+  isEmpty() {
+    return this.list.isEmpty();
+  }
+
+  getSize() {
+    return this.list.getSize();
+  }
+
+  peek() {
+    return this.isEmpty() ? null : this.list.head.value;
+  }
+
+  enqueue(value) {
+    this.list.append(value);
+  }
+
+  dequeue() {
+    return this.list.removeFrom(0);
+  }
+
+  print() {
+    this.list.print();
+  }
+}
+
+const queue = new Queue();
+``;
+
+console.log(queue.isEmpty());
+queue.enqueue(0);
+queue.enqueue(2);
+queue.enqueue(3);
+console.log(queue.dequeue());
+console.log(queue.peek());
+
+// console.log(queue);
+queue.print();
+
+///////////////////////////////////////////
+// Using custom linked list
+/*
 class Node {
   constructor(value) {
     this.value = value;
@@ -82,6 +128,7 @@ queue.print();
 // console.log(queue.peek());
 
 console.log(queue);
+*/
 
 ///////////////////////////////////////////
 // Using an object
