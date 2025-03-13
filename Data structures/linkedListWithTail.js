@@ -123,10 +123,12 @@ class LinkedList {
       }
       if (previous.next) {
         let removedNode = previous.next;
+        if (!removedNode.next) {
+          this.tail = previous;
+        }
         previous.next = removedNode.next;
-        this.tail = previous;
         this.size -= 1;
-        return value;
+        return removedNode.value;
       }
       return null;
     }
