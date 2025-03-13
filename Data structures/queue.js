@@ -1,5 +1,91 @@
 "use strict";
 
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.size = 0;
+  }
+
+  isEmpty() {
+    return this.size === 0;
+  }
+
+  getSize() {
+    return this.size;
+  }
+
+  enqueue(value) {
+    if (value === null || value === undefined) return;
+
+    const node = new Node(value);
+
+    if (this.isEmpty()) {
+      this.head = node;
+      this.tail = node;
+    } else {
+      this.tail.next = node;
+      this.tail = node;
+    }
+    this.size += 1;
+  }
+
+  dequeue() {
+    if (this.isEmpty()) {
+      return "Queue is empty";
+    }
+
+    let removedNode = this.head;
+    this.head = removedNode.next;
+    this.size -= 1;
+
+    if (this.size === 0) {
+      this.tail = null;
+    }
+
+    return removedNode.value;
+  }
+
+  peek() {
+    return this.isEmpty() ? "Queue is empty" : this.head.value;
+  }
+
+  print() {
+    let str = "";
+    let current = this.head;
+    while (current) {
+      str += current.value + " ";
+      current = current.next;
+    }
+    console.log(str);
+  }
+}
+
+const queue = new Queue();
+
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+console.log(queue.dequeue());
+console.log(queue.dequeue());
+// console.log(queue.dequeue());
+// console.log(queue.dequeue());
+
+queue.print();
+// console.log(queue.peek());
+
+console.log(queue);
+
+///////////////////////////////////////////
+// Using an object
+/*
 class Queue {
   constructor() {
     this.items = {};
@@ -48,3 +134,4 @@ queue.enqueue(3);
 console.log(queue.size());
 queue.print();
 console.log(queue.peek());
+*/
