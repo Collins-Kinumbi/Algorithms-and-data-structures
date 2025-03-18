@@ -23,9 +23,9 @@ class HashTable {
     } else {
       const sameKeyItem = bucket.find((item) => item[0] === key);
       if (sameKeyItem) {
-        sameKeyItem[1] = value;
+        sameKeyItem[1] = value; // Update existing key
       } else {
-        bucket.push([key, value]);
+        bucket.push([key, value]); // Add new key-value pair
       }
     }
   }
