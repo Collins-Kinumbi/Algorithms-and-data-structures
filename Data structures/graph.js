@@ -20,6 +20,19 @@ class Graph {
     this.adjacencyList[vertex1].add(vertex2);
     this.adjacencyList[vertex2].add(vertex1);
   }
+
+  display() {
+    for (let vertex in this.adjacencyList) {
+      console.log(vertex + "->" + [...this.adjacencyList[vertex]]);
+    }
+  }
+
+  hasEdge(vertex1, vertex2) {
+    return (
+      this.adjacencyList[vertex1].has(vertex2) &&
+      this.adjacencyList[vertex2].has(vertex1)
+    );
+  }
 }
 
 const graph = new Graph();
@@ -28,6 +41,8 @@ graph.addVertex("B");
 graph.addVertex("C");
 graph.addEdge("A", "B");
 graph.addEdge("B", "C");
+graph.display();
+console.log(graph.hasEdge("B", "A"));
 console.log(graph);
 
 /* 
