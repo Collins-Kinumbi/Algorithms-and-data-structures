@@ -69,6 +69,7 @@ class LinkedList {
 
       previous.next.previous = node;
       node.next = previous.next;
+      node.previous = previous;
       previous.next = node;
 
       this.size += 1;
