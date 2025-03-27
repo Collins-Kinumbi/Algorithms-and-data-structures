@@ -5,29 +5,19 @@
 function isAnagram(str1, str2) {
   if (str1.length !== str2.length) return false;
 
-  const frequencyCounter1 = {};
+  const lookup = {};
 
-  const frequencyCounter2 = {};
-
-  for (let val of str1) {
+  for (let char of str1) {
     // if letter exists, increment, otherwise set to 1
-    frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
-  }
-  for (let val of str2) {
-    // if letter exists, increment, otherwise set to 1
-    frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1;
+    lookup[char] = (lookup[char] || 0) + 1;
   }
 
-  // console.log(frequencyCounter1);
-  // console.log(frequencyCounter2);
+  // console.log(lookup);
 
-  for (let key in frequencyCounter1) {
-    if (!(key in frequencyCounter2)) {
-      return false;
-    }
-    if (frequencyCounter1[key] !== frequencyCounter2[key]) {
-      return false;
-    }
+  for (let char of str2) {
+    if (!lookup[char]) return false; // If char doesn't exist or is 0
+
+    lookup[char] -= 1;
   }
   return true;
 }
