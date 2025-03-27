@@ -1,5 +1,41 @@
 "use strict";
 
+// Given two strings, write a function to determine  if the second string is an anagram of the first.
+
+function isAnagram(str1, str2) {
+  if (str1.length !== str2.length) return false;
+
+  const frequencyCounter1 = {};
+
+  const frequencyCounter2 = {};
+
+  for (let val of str1) {
+    // if letter exists, increment, otherwise set to 1
+    frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
+  }
+  for (let val of str2) {
+    // if letter exists, increment, otherwise set to 1
+    frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1;
+  }
+
+  // console.log(frequencyCounter1);
+  // console.log(frequencyCounter2);
+
+  for (let key in frequencyCounter1) {
+    if (!(key in frequencyCounter2)) {
+      return false;
+    }
+    if (frequencyCounter1[key] !== frequencyCounter2[key]) {
+      return false;
+    }
+  }
+  return true;
+}
+
+console.log(isAnagram("aaz", "zaa"));
+console.log(isAnagram("cinema", "iceman"));
+///////////////////////////////////////////
+
 // Write a function called 'same' it should take two arrays and check if the second array contains the squares of the values in the first array
 
 function same(arr1, arr2) {
