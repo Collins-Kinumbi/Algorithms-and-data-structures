@@ -1,5 +1,26 @@
 "use strict";
 
+// Implement a function called 'countUniqueValues', which accepts a sorted array and counts the unique values in the array. There can be negative numbers in the array, but will always be sorted
+
+function countUniqueValues(arr) {
+  if (arr.length === 0) return 0;
+
+  let left = 0;
+
+  for (let right = 1; right < arr.length; right++) {
+    if (arr[left] !== arr[right]) {
+      left += 1;
+      arr[left] = arr[right];
+    }
+  }
+  return left + 1;
+}
+
+console.log(countUniqueValues([1, 1, 1, 1, 1, 2]));
+console.log(countUniqueValues([1, 1, 2, 3]));
+
+///////////////////////////////////////////
+
 // Write a function 'sumZero' that takes in a sorted array of integers and should find the first pair where sum is 0. Return an array that includes both values that sum to zero or undefiled if the pair does not exist
 
 function sumZero(arr) {
