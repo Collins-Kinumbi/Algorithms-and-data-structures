@@ -1,5 +1,29 @@
 "use strict";
 
+// Write a function 'sumZero' that takes in a sorted array of integers and should find the first pair where sum is 0. Return an array that includes both values that sum to zero or undefiled if the pair does not exist
+
+function sumZero(arr) {
+  if (!arr || arr.length < 2) return null;
+
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (right > left) {
+    let sum = arr[left] + arr[right];
+    if (sum === 0) {
+      return [arr[left], arr[right]];
+    } else if (sum > 0) {
+      right -= 1; // Move right pointer left (since the array is sorted, we need a smaller number).
+    } else {
+      left += 1; // Move left pointer right (to increase the sum).
+    }
+  }
+}
+
+console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 5]));
+
+///////////////////////////////////////////
+
 // Write a function mostFrequentChar(str) that finds the character that appears the most in a given string
 
 function mostFrequentChar(str) {
@@ -21,12 +45,12 @@ function mostFrequentChar(str) {
   return frequent;
 }
 
-console.log(mostFrequentChar("javascript"));
+// console.log(mostFrequentChar("javascript"));
 
-console.log(mostFrequentChar("hello"));
+// console.log(mostFrequentChar("hello"));
 
-console.log(mostFrequentChar("aabbbcc"));
-console.log(mostFrequentChar("abc"));
+// console.log(mostFrequentChar("aabbbcc"));
+// console.log(mostFrequentChar("abc"));
 
 ///////////////////////////////////////////
 
@@ -54,6 +78,7 @@ function isAnagram(str1, str2) {
 
 // console.log(isAnagram("aaz", "zaa"));
 // console.log(isAnagram("cinema", "iceman"));
+
 ///////////////////////////////////////////
 
 // Write a function called 'same' it should take two arrays and check if the second array contains the squares of the values in the first array
