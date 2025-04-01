@@ -52,8 +52,8 @@ function isAnagram(str1, str2) {
   return true;
 }
 
-console.log(isAnagram("aaz", "zaa"));
-console.log(isAnagram("cinema", "iceman"));
+// console.log(isAnagram("aaz", "zaa"));
+// console.log(isAnagram("cinema", "iceman"));
 ///////////////////////////////////////////
 
 // Write a function called 'same' it should take two arrays and check if the second array contains the squares of the values in the first array
