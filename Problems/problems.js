@@ -1,5 +1,35 @@
 "use strict";
 
+// Write a function mostFrequentChar(str) that finds the character that appears the most in a given string
+
+function mostFrequentChar(str) {
+  if (!str) return null;
+
+  const lookup = {};
+  let frequent = str[0]; // Assign first character immediately
+  for (let i = 0; i < str.length; i++) {
+    lookup[str[i]] = (lookup[str[i]] || 0) + 1;
+  }
+  // console.log(lookup);
+
+  for (let char in lookup) {
+    if (lookup[char] > lookup[frequent]) {
+      frequent = char;
+    }
+  }
+
+  return frequent;
+}
+
+console.log(mostFrequentChar("javascript"));
+
+console.log(mostFrequentChar("hello"));
+
+console.log(mostFrequentChar("aabbbcc"));
+console.log(mostFrequentChar("abc"));
+
+///////////////////////////////////////////
+
 // Given two strings, write a function to determine  if the second string is an anagram of the first.
 
 function isAnagram(str1, str2) {
