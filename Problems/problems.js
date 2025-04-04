@@ -1,5 +1,33 @@
 "use strict";
 
+//Write a function that takes a sorted array and a target sum. Return the first pair of numbers that sum to the target, or null if no such pair exists.
+
+function pairSum(arr, target) {
+  if (arr.length < 2 || target === undefined) return null;
+
+  let left = 0;
+
+  let right = arr.length - 1;
+
+  while (left < right) {
+    let sum = arr[left] + arr[right];
+    if (sum === target) return [arr[left], arr[right]];
+
+    if (sum > target) {
+      right -= 1;
+    } else {
+      left += 1;
+    }
+  }
+  return null;
+}
+
+// console.log(pairSum([1, 2, 3, 4, 5, 6], 7));
+
+// console.log(pairSum([-5, -3, 0, 2, 4, 7], 4));
+
+///////////////////////////////////////////
+
 // Implement a function called 'countUniqueValues', which accepts a sorted array and counts the unique values in the array. There can be negative numbers in the array, but will always be sorted
 
 function countUniqueValues(arr) {
@@ -16,8 +44,8 @@ function countUniqueValues(arr) {
   return left + 1;
 }
 
-console.log(countUniqueValues([1, 1, 1, 1, 1, 2]));
-console.log(countUniqueValues([1, 1, 2, 3]));
+// console.log(countUniqueValues([1, 1, 1, 1, 1, 2]));
+// console.log(countUniqueValues([1, 1, 2, 3]));
 
 ///////////////////////////////////////////
 
@@ -41,7 +69,7 @@ function sumZero(arr) {
   }
 }
 
-console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 5]));
+// console.log(sumZero([-4, -3, -2, -1, 0, 1, 2, 5]));
 
 ///////////////////////////////////////////
 
