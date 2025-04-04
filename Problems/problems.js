@@ -1,5 +1,31 @@
 "use strict";
 
+// Write a function that checks if a string is a palindrome (reads the same forward and backward). Ignore case and non-alphanumeric characters.
+
+function isPalindrome(str) {
+  if (str.length === 0) return false;
+
+  let string = str.toLowerCase().replace(/[^a-z0-9]/g, ""); // Remove non-alphanumeric characters
+
+  let left = 0;
+  let right = string.length - 1;
+
+  while (left < right) {
+    if (string[left] !== string[right]) return false;
+
+    left += 1;
+    right -= 1;
+  }
+  return true;
+}
+
+// console.log(isPalindrome("racecar"));
+// console.log(isPalindrome("lol"));
+// console.log(isPalindrome("A man, a plan, a canal: Panama"));
+// console.log(isPalindrome("hello"));
+
+///////////////////////////////////////////
+
 //Write a function that takes a sorted array and a target sum. Return the first pair of numbers that sum to the target, or null if no such pair exists.
 
 function pairSum(arr, target) {
