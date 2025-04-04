@@ -26,6 +26,8 @@ function pairSum(arr, target) {
 
 // console.log(pairSum([-5, -3, 0, 2, 4, 7], 4));
 
+// console.log(pairSum([1, 2, 3, 4], 10));
+
 ///////////////////////////////////////////
 
 // Implement a function called 'countUniqueValues', which accepts a sorted array and counts the unique values in the array. There can be negative numbers in the array, but will always be sorted
