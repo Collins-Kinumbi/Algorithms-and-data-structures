@@ -20,6 +20,7 @@ class BinarySearchTree {
     const node = new Node(value);
 
     if (this.isEmpty()) {
+      //if empty root node = new node
       this.root = node;
     } else {
       this.insertNode(this.root, node);
@@ -27,14 +28,18 @@ class BinarySearchTree {
   }
 
   insertNode(root, newNode) {
+    if (root.value === newNode.value) return; // Stop if and don't insert duplicates
+
     if (newNode.value < root.value) {
       if (root.left === null) {
+        // root left is empty, left = new node
         root.left = newNode;
       } else {
         this.insertNode(root.left, newNode);
       }
     } else {
       if (root.right === null) {
+        // root right is empty, left = new node
         root.right = newNode;
       } else {
         this.insertNode(root.right, newNode);
@@ -42,50 +47,72 @@ class BinarySearchTree {
     }
   }
 
-  search(root, value) {
-    if (!root) return false; // If root is null, value is not found
+  search(value, root = this.root) {
+    if (!root) return false; //BASE CASE: If root is null, value is not found
 
     if (root.value === value) {
       return true; // Found the value
     } else if (value < root.value) {
-      return this.search(root.left, value); // Search in the left subtree
+      return this.search(value, root.left); // Search in the left subtree
     } else {
-      return this.search(root.right, value); // Search in the right subtree
+      return this.search(value, root.right); // Search in the right subtree
     }
   }
+
+  // DFS Traversal
+  preOrder() {
+    const visited = [];
+
+    function traverse(node) {
+      if (!node) return; // BASE CASE: If falsy stop
+      visited.push(node.value); // Add to arr
+      traverse(node.left); // Go left
+      traverse(node.right); // Go right
+    }
+    traverse(this.root);
+    return visited;
+  }
+
+  inOrder() {
+    const visited = [];
+
+    function traverse(node) {
+      if (!node) return;
+      traverse(node.left);
+      visited.push(node.value);
+      traverse(node.right);
+    }
+    traverse(this.root);
+
+    return visited;
+  }
+
+  postOrder() {
+    const visited = [];
+
+    function traverse(node) {
+      if (!node) return;
+      traverse(node.left);
+      traverse(node.right);
+      visited.push(node.value);
+    }
+    traverse(this.root);
+    return visited;
+  }
+  /////////////////////////////////////////
 
   // BFS Traversal
-  preporder(root) {
-    if (root) {
-      console.log(root.value);
-      this.preporder(root.left);
-      this.preporder(root.right);
-    }
-  }
-
-  inorder(root) {
-    if (root) {
-      this.inorder(root.left);
-      console.log(root.value);
-      this.inorder(root.right);
-    }
-  }
-
-  postorder(root) {
-    if (root) {
-      this.postorder(root.left);
-      this.postorder(root.right);
-      console.log(root.value);
-    }
-  }
-
-  // BFS
   levelOrder() {
+    if (!this.root) return [];
+
     const queue = [];
     queue.push(this.root);
+
+    const visited = [];
     while (queue.length) {
       let current = queue.shift();
-      console.log(current.value);
+      // console.log(current.value);
+      visited.push(current.value);
       if (current.left) {
         queue.push(current.left);
       }
@@ -93,7 +120,9 @@ class BinarySearchTree {
         queue.push(current.right);
       }
     }
+    return visited;
   }
+  /////////////////////////////////////////
 
   min(root) {
     if (!root.left) {
@@ -148,12 +177,12 @@ bst.insert(15);
 bst.insert(3);
 bst.insert(7);
 
-console.log(bst.search(bst.root, 15));
-console.log(bst.search(bst.root, 19));
+console.log(bst.search(15));
+console.log(bst.search(19));
 
-// bst.preporder(bst.root);
-// bst.inorder(bst.root);
-// bst.postorder(bst.root);
+// bst.prepOrder(bst.root);
+// bst.inOrder(bst.root);
+// bst.postOrder(bst.root);
 bst.levelOrder();
 console.log("Larget value:", bst.max(bst.root));
 console.log("Smallest value:", bst.min(bst.root));
