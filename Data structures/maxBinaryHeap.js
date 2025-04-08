@@ -10,12 +10,7 @@ class MaxBinaryHeap {
   }
 
   insert(value) {
-    if (this.isEmpty()) {
-      this.values.push(value);
-      return this.values;
-    } else {
-      return this.bubbleUp(value);
-    }
+    return this.bubbleUp(value);
   }
   bubbleUp(value) {
     this.values.push(value);
