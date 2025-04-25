@@ -23,7 +23,7 @@ class Graph {
 
   display() {
     for (let vertex in this.adjacencyList) {
-      console.log(vertex + "->" + [...this.adjacencyList[vertex]]);
+      console.log(vertex + "-> " + [...this.adjacencyList[vertex]].join(", "));
     }
   }
 
