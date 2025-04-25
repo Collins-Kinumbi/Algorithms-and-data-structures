@@ -1,27 +1,34 @@
-"use script";
+"use strict";
 
 class HashTable {
-  constructor(size) {
+  constructor(size = 53) {
     this.table = new Array(size);
     this.size = size;
   }
-  hash(key) {
+
+  // Private hash method
+  #hash(key) {
     let total = 0;
-    for (let i = 0; i < key.length; i++) {
-      total += key.charCodeAt(i);
+    let PRIME = 31;
+    for (let i = 0; i < Math.min(key.length, 100); i++) {
+      let value = key.charCodeAt(i);
+
+      total = total * PRIME + value;
     }
     return total % this.size;
   }
 
   set(key, value) {
-    const index = this.hash(key);
-    // this.table[index] = value;
+    if (typeof key !== "string") return;
+
+    const index = this.#hash(key);
 
     const bucket = this.table[index];
+
     if (!bucket) {
       this.table[index] = [[key, value]];
     } else {
-      const sameKeyItem = bucket.find((item) => item[0] === key);
+      let sameKeyItem = bucket.find((item) => item[0] === key);
       if (sameKeyItem) {
         sameKeyItem[1] = value; // Update existing key
       } else {
@@ -31,57 +38,56 @@ class HashTable {
   }
 
   get(key) {
-    const index = this.hash(key);
-    // return this.table[index];
+    if (typeof key !== "string") return;
 
-    let bucket = this.table[index];
+    let index = this.#hash(key);
 
-    if (bucket) {
-      const sameKeyItem = bucket.find((item) => item[0] === key);
-      if (sameKeyItem) {
-        return sameKeyItem[1];
-      }
-      return undefined;
-    }
-  }
-
-  remove(key) {
-    const index = this.hash(key);
-    // this.table[index] = undefined;
-
-    let bucket = this.table[index];
+    const bucket = this.table[index];
 
     if (bucket) {
       const sameKeyItem = bucket.find((item) => item[0] === key);
-
-      if (sameKeyItem) {
-        bucket.splice(bucket.indexOf(sameKeyItem), 1);
-      }
+      //   console.log(sameKeyItem);
+      return sameKeyItem ? sameKeyItem[1] : undefined;
     }
   }
 
-  display() {
+  keys() {
+    let keys = [];
+
     for (let i = 0; i < this.table.length; i++) {
       if (this.table[i]) {
-        console.log(i, this.table[i]);
+        for (let j = 0; j < this.table[i].length; j++) {
+          keys.push(this.table[i][j][0]);
+        }
       }
     }
+    return keys;
+  }
+
+  values() {
+    let values = [];
+
+    for (let i = 0; i < this.table.length; i++) {
+      if (this.table[i]) {
+        for (let j = 0; j < this.table[i].length; j++) {
+          values.push(this.table[i][j][1]);
+        }
+      }
+    }
+    return values;
   }
 }
 
-const table = new HashTable(50);
+const table = new HashTable(101);
 
-table.set("name", "Mark");
-table.set("age", 18);
-table.set("mane", "Wayne");
-table.set("bane", "Bayne");
+table.set("yellow", "#FFFF00");
+table.set("name", "bruce");
+table.set("mane", "wayne");
+table.set("bane", "bayne");
 
-table.display();
+// console.log(table.table[39]);
 
-// console.log(table.get("name"));
-
-// table.remove("name");
-
-// table.display();
-
+console.log(table.get("mane"));
+console.log(table.keys());
+console.log(table.values());
 console.log(table);
