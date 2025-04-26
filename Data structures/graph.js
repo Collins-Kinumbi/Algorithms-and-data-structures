@@ -70,6 +70,30 @@ class Graph {
       }
     }
   }
+
+  // BFS Traversal
+  BFS(vertex) {
+    if (!vertex) return "Please pass in a vertex...";
+    const queue = [vertex];
+    const result = [];
+    const visited = {};
+
+    visited[vertex] = true;
+
+    while (queue.length) {
+      const node = queue.shift();
+      result.push(node);
+
+      for (let neighbor of this.adjacencyList[node]) {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      }
+    }
+
+    return result;
+  }
 }
 
 const graph = new Graph();
@@ -81,6 +105,7 @@ graph.addEdge("B", "C");
 graph.display();
 console.log(graph.hasEdge("B", "A"));
 console.log(graph.DFS("A"));
+console.log(graph.BFS("A"));
 console.log(graph);
 
 /* 
