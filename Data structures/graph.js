@@ -47,6 +47,29 @@ class Graph {
     }
     delete this.adjacencyList[vertex];
   }
+
+  // DFS Traversal
+  DFS(vertex) {
+    if (!vertex) return "Please pass in a vertex...";
+    const result = [];
+    const visited = {};
+
+    this.DFSHelper(vertex, visited, result);
+
+    return result;
+  }
+  DFSHelper(node, visited, result) {
+    if (!node) return;
+
+    visited[node] = true;
+    result.push(node);
+
+    for (let neighbor of this.adjacencyList[node]) {
+      if (!visited[neighbor]) {
+        this.DFSHelper(neighbor, visited, result);
+      }
+    }
+  }
 }
 
 const graph = new Graph();
@@ -57,6 +80,7 @@ graph.addEdge("A", "B");
 graph.addEdge("B", "C");
 graph.display();
 console.log(graph.hasEdge("B", "A"));
+console.log(graph.DFS("A"));
 console.log(graph);
 
 /* 
