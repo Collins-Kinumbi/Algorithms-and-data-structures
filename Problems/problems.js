@@ -1,5 +1,35 @@
 "use strict";
 
+// You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string. Return the merged string.
+
+function mergeAlternately(word1, word2) {
+  const len1 = word1.length; // Length of the first word
+  const len2 = word2.length; // Length of the second word
+  let a = 0,
+    b = 0; // Pointers to track position in word1 and word2
+  let result = []; // Array to collect characters
+
+  // Continue until we reach the end of both strings
+  while (a < len1 || b < len2) {
+    if (a < len1) {
+      result.push(word1[a]); // Add character from word1
+      a++; // Move pointer forward
+    }
+    if (b < len2) {
+      result.push(word2[b]); // Add character from word2
+      b++; // Move pointer forward
+    }
+  }
+
+  return result.join(""); // Join array into a single string and return
+}
+
+// console.log(mergeAlternately('ab', 'pqrs'))// "apbqrs"
+// console.log(mergeAlternately('abc', 'pqr'))// "apbqcr"
+// console.log(mergeAlternately('abcd', 'pq'))// "apbqcd"
+
+///////////////////////////////////////////
+
 // Given an integer array nums of size n, return the number with the value closest to 0 in nums. If there are multiple answers, return the number with the largest value.
 
 function findClosestNumber(nums) {
