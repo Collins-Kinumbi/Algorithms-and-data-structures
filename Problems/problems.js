@@ -1,5 +1,27 @@
 "use strict";
 
+// Given an integer array nums of size n, return the number with the value closest to 0 in nums. If there are multiple answers, return the number with the largest value.
+
+function findClosestNumber(nums) {
+  let closest = nums[0];
+  for (let i = 0; i < nums.length; i++) {
+    if (Math.abs(nums[i]) < Math.abs(closest)) {
+      // if smaller than closest, closest = nums[i]
+      closest = nums[i];
+    } else if (Math.abs(nums[i]) === Math.abs(closest)) {
+      // If tie, pick the larger number
+      closest = Math.max(closest, nums[i]);
+    }
+  }
+  return closest;
+}
+
+// console.log(findClosestNumber([-2, 2])); // 2
+// console.log(findClosestNumber([-1, -1, -1])); // -1
+// console.log(findClosestNumber([-3, 5, 9, -1])); // -1
+
+///////////////////////////////////////////
+
 // Write a function that checks if a string is a palindrome (reads the same forward and backward). Ignore case and non-alphanumeric characters.
 
 function isPalindrome(str) {
