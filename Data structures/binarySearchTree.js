@@ -127,20 +127,20 @@ class BinarySearchTree {
 
   /////////////////////////////////////////
 
-  min(root) {
-    if (!root.left) {
-      return root.value;
-    } else {
-      return this.min(root.left);
+  min(node = this.root) {
+    if (!node) return;
+    if (node.left) {
+      return this.findMin(node.left);
     }
+    return node.value;
   }
 
-  max(root) {
-    if (!root.right) {
-      return root.value;
-    } else {
-      return this.max(root.right);
+  max(node = this.root) {
+    if (!node) return;
+    if (node.right) {
+      return this.findMax(node.right);
     }
+    return node.value;
   }
 
   delete(value) {
