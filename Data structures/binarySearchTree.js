@@ -144,29 +144,45 @@ class BinarySearchTree {
   }
 
   delete(value) {
-    this.root = this.deleteNode(this.root, value);
+    // This replaces the root of the BST with the result of the deleteNode process
+    this.root = this.deleteNode(value, this.root);
   }
-  deleteNode(root, value) {
-    if (root === null) {
-      return root;
-    }
-    if (value < root.value) {
-      root.left = this.deleteNode(root.left, value);
-    } else if (value > root.value) {
-      root.right = this.deleteNode(root.right, value);
+
+  deleteNode(value, node) {
+    if (!node) return node; // Base case: node not found
+
+    // Traverse the tree to find the node to delete
+    if (value < node.value) {
+      node.left = this.deleteNode(value, node.left); // Go left
+    } else if (value > node.value) {
+      node.right = this.deleteNode(value, node.right); // Go right
     } else {
-      if (!root.right && !root.right) {
-        return null;
+      // Node found: there are 3 possible deletion cases
+
+      // CASE 1: No children (leaf node)
+      if (!node.left && !node.right) {
+        return null; // Just delete it
       }
-      if (!root.left) {
-        return root.right;
-      } else if (!root.right) {
-        return root.left;
+
+      // CASE 2: One child (right only)
+      if (!node.left) {
+        return node.right; // Replace node with right child
       }
-      root.value = this.min(root.right);
-      root.right = this.deleteNode(root.right, root.value);
+
+      // CASE 2: One child (left only)
+      else if (!node.right) {
+        return node.left; // Replace node with left child
+      }
+
+      // CASE 3: Two children
+      // Find the smallest value in the *right* subtree (in-order successor)
+      node.value = this.min(node.right);
+
+      // Delete the in-order successor from the right subtree
+      node.right = this.deleteNode(node.value, node.right);
     }
-    return root;
+
+    return node; // Always return the current node back up the call stack
   }
 
   /////////////////////////////////////////
