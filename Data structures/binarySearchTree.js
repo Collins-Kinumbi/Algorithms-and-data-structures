@@ -128,7 +128,7 @@ class BinarySearchTree {
   /////////////////////////////////////////
 
   min(node = this.root) {
-    if (!node) return;
+    if (!node) return null;
     if (node.left) {
       return this.findMin(node.left);
     }
@@ -136,7 +136,7 @@ class BinarySearchTree {
   }
 
   max(node = this.root) {
-    if (!node) return;
+    if (!node) return null;
     if (node.right) {
       return this.findMax(node.right);
     }
