@@ -49,15 +49,15 @@ class BinarySearchTree {
     }
   }
 
-  search(value, root = this.root) {
-    if (!root) return false; //BASE CASE: If root is null, value is not found
+  search(value, node = this.root) {
+    if (!node) return false; //BASE CASE: If node is null, value is not found
 
-    if (root.value === value) {
+    if (node.value === value) {
       return true; // Found the value
-    } else if (value < root.value) {
-      return this.search(value, root.left); // Search in the left subtree
+    } else if (value < node.value) {
+      return this.search(value, node.left); // Search in the left subtree
     } else {
-      return this.search(value, root.right); // Search in the right subtree
+      return this.search(value, node.right); // Search in the right subtree
     }
   }
 
