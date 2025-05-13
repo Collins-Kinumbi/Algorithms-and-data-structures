@@ -25,6 +25,8 @@ class BinarySearchTree {
     } else {
       this.insertNode(this.root, node);
     }
+
+    return this; // <--- This enables chaining
   }
 
   insertNode(root, newNode) {
