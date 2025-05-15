@@ -107,20 +107,19 @@ class BinarySearchTree {
   levelOrder() {
     if (!this.root) return [];
 
-    const queue = [];
-    queue.push(this.root);
+    const queue = [this.root];
 
     const visited = [];
     while (queue.length) {
-      let current = queue.shift();
+      let current = queue.shift(); // Remove first item from queue
+
       // console.log(current.value);
-      visited.push(current.value);
-      if (current.left) {
-        queue.push(current.left);
-      }
-      if (current.right) {
-        queue.push(current.right);
-      }
+
+      visited.push(current.value); // Add node value to result
+
+      if (current.left) queue.push(current.left); // Queue left child
+
+      if (current.right) queue.push(current.right); // Queue right child
     }
     return visited;
   }
