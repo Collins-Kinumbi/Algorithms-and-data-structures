@@ -162,7 +162,7 @@ class LinkedList {
   reverse() {
     let previous = null;
     let current = this.head;
-    this.tail = this.head;
+    this.tail = this.head; // After reversal, the head becomes the tail
     while (current) {
       let next = current.next;
 
@@ -174,7 +174,7 @@ class LinkedList {
       previous = current;
       current = next;
     }
-    this.head = previous;
+    this.head = previous; // Now `previous` is the new head, and the old head is now tail
   }
 
   print() {
