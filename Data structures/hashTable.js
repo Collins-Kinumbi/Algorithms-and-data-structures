@@ -21,18 +21,21 @@ class HashTable {
   set(key, value) {
     if (typeof key !== "string") return;
 
-    const index = this.#hash(key);
-
-    const bucket = this.table[index];
+    let index = this.#hash(key); // get index using hash function
+    const bucket = this.table[index]; // get what's currently at that index
 
     if (!bucket) {
+      // if it's empty (undefined), initialize it with an array of the key-value pair
       this.table[index] = [[key, value]];
     } else {
+      // if there's already a bucket (a list of key-value pairs)
       let sameKeyItem = bucket.find((item) => item[0] === key);
       if (sameKeyItem) {
-        sameKeyItem[1] = value; // Update existing key
+        // key exists: update the value
+        sameKeyItem[1] = value;
       } else {
-        bucket.push([key, value]); // Add new key-value pair
+        // key doesn't exist: push a new [key, value] into the bucket
+        bucket.push([key, value]);
       }
     }
   }
@@ -40,15 +43,17 @@ class HashTable {
   get(key) {
     if (typeof key !== "string") return;
 
-    let index = this.#hash(key);
-
-    const bucket = this.table[index];
+    let index = this.#hash(key); // Hash the key to get the index
+    let bucket = this.table[index]; // Get whatever is at that index
 
     if (bucket) {
-      const sameKeyItem = bucket.find((item) => item[0] === key);
-      //   console.log(sameKeyItem);
-      return sameKeyItem ? sameKeyItem[1] : undefined;
+      let sameKeyItem = bucket.find((item) => item[0] === key); // Search for matching key
+      if (sameKeyItem) {
+        return sameKeyItem[1]; // Return its value
+      }
     }
+
+    return undefined; // Not found
   }
 
   keys() {
@@ -75,6 +80,50 @@ class HashTable {
       }
     }
     return values;
+  }
+
+  remove(key) {
+    if (typeof key !== "string") return;
+
+    let index = this.#hash(key);
+
+    let bucket = this.table[index];
+
+    if (bucket) {
+      const itemIndex = bucket.findIndex((item) => item[0] === key); //Get index if item in bucket
+
+      if (itemIndex !== -1) {
+        const deletedItem = bucket[itemIndex][1]; // get the value to return
+
+        bucket.splice(itemIndex, 1); // remove the item from the bucket
+        return deletedItem;
+      }
+    }
+
+    return "Item does not exist";
+  }
+
+  display() {
+    // Create an empty object to store the final key-value pairs
+    let result = {};
+
+    // Loop through each slot in the main table array
+    for (let i = 0; i < this.table.length; i++) {
+      // Get the bucket (array of key-value pairs) at the current index
+      let bucket = this.table[i];
+
+      // If the bucket exists (i.e., there is data at this index)
+      if (bucket) {
+        // Loop through each key-value pair in the bucket
+        for (let j = 0; j < bucket.length; j++) {
+          const [key, value] = bucket[j]; // Destructure key and value from the pair
+          result[key] = value; // Add the key-value pair to the result object
+        }
+      }
+    }
+
+    // Return the final object containing all stored key-value pairs
+    return result;
   }
 }
 
