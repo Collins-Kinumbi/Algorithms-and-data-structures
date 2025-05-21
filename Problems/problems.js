@@ -1,6 +1,34 @@
 "use strict";
 
 /*
+Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+
+A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
+*/
+
+function isSubsequence(s, t) {
+  if (s.length > t.length) return false;
+
+  let i = 0;
+  let j = 0;
+
+  while (i < s.length && j < t.length) {
+    if (s[i] === t[j]) {
+      i += 1;
+      j += 1;
+    } else if (s[i] !== t[j]) {
+      j += 1;
+    }
+  }
+  return i === s.length; // we only care if we ever reach the end of i if we ever loop completly over s.
+}
+
+// console.log(isSubsequence("abc", "ahbgdc"));
+// console.log(isSubsequence("axc", "ahbgdc"));
+
+//////////////////////////////////////////
+
+/*
 Roman numerals are represented by seven different symbols: I, V, X, L, C, D and M.
 
 Symbol       Value
