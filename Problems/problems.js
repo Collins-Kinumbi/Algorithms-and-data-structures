@@ -1,6 +1,40 @@
 "use strict";
 
 /*
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+*/
+
+function maxProfit(prices) {
+  let maxProfit = 0;
+  let buy = 0,
+    sell = 1;
+
+  while (sell < prices.length) {
+    if (prices[buy] > prices[sell]) {
+      buy = sell; // found a new lower price
+    } else {
+      let profit = prices[sell] - prices[buy];
+      // if (profit > maxProfit) {
+      //   maxProfit = profit;
+      // }
+      maxProfit = Math.max(maxProfit, profit);
+    }
+    sell += 1;
+  }
+
+  return maxProfit;
+}
+
+// console.log(maxProfit([7, 1, 5, 3, 6, 4])); // 5
+// console.log(maxProfit([1, 2])); // 1
+
+///////////////////////////////////////////
+
+/*
 Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
 
 A subsequence of a string is a new string that is formed from the original string by deleting some (can be none) of the characters without disturbing the relative positions of the remaining characters. (i.e., "ace" is a subsequence of "abcde" while "aec" is not).
