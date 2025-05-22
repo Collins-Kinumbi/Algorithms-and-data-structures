@@ -1,6 +1,41 @@
 "use strict";
 
 /*
+Reverse words in string III in place
+*/
+
+function reverseWords(str) {
+  //first let's split the string into an array
+  const wordsArr = str.split(" ");
+  // console.log(wordsArr);
+
+  const output = []; // we'll push the revesed string items into this
+
+  let i = 0;
+  while (i < wordsArr.length) {
+    output.push(reverse(wordsArr[i]));
+    i++;
+  } // in loop call helper fun that reverses the string and push the value into output
+
+  // console.log(output.join(" "));
+  return output.join(" "); // Join output into a string
+}
+
+function reverse(str) {
+  let reverseStr = "";
+  for (let i = str.length - 1; i >= 0; i--) {
+    reverseStr += str[i];
+  }
+  // console.log(reverseStr);
+
+  return reverseStr;
+}
+
+console.log(reverseWords("Let's take LeetCode contest")); //s'teL ekat edoCteeL tsetnoc
+
+//////////////////////////////////////////
+
+/*
 You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
 You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
