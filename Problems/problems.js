@@ -1,6 +1,46 @@
 "use strict";
 
 /*
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+*/
+
+function longestCommonPrefix(strs) {
+  if (strs.length === 0) return "";
+  let prefix = "";
+  let minLength = strs[0].length;
+
+  for (let i = 1; i < strs.length; i++) {
+    if (strs[i].length < minLength) {
+      minLength = strs[i].length;
+    }
+  }
+
+  let i = 0;
+  while (i < minLength) {
+    const char = strs[0][i]; // pick character from first string
+
+    // check this character against all other strings
+    for (let j = 1; j < strs.length; j++) {
+      if (strs[j][i] !== char) {
+        return prefix; // mismatch found → return what we have
+      }
+    }
+    prefix += char; // everyone matched at this index
+    i += 1;
+  }
+
+  return prefix;
+}
+
+// console.log(longestCommonPrefix(["flower", "flow", "flight"]));
+// console.log(longestCommonPrefix(["dog", "racecar", "car"]));
+// console.log(longestCommonPrefix([""]));
+
+///////////////////////////////////////////
+
+/*
 Reverse words in string III in place
 */
 
@@ -31,7 +71,7 @@ function reverse(str) {
   return reverseStr;
 }
 
-console.log(reverseWords("Let's take LeetCode contest")); //s'teL ekat edoCteeL tsetnoc
+// console.log(reverseWords("Let's take LeetCode contest")); //s'teL ekat edoCteeL tsetnoc
 
 //////////////////////////////////////////
 
