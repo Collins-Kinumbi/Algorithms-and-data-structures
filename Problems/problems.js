@@ -1,5 +1,39 @@
 "use strict";
 
+/*Return the first none repeating char in a string */
+
+function firstNoneRepeatingChar(str) {
+  if (!str) return null;
+
+  let lookup = {}; // will store characters in str as keys and the frequency of how many times they appear in str
+
+  let first = str[0]; // Assign the very first char to first
+
+  for (let i = 0; i < str.length; i++) {
+    if (lookup[str[i]]) {
+      lookup[str[i]] += 1;
+    } else {
+      lookup[str[i]] = 1;
+    }
+  }
+
+  // console.log(lookup);
+
+  for (let char in lookup) {
+    // Loop through look up object
+    if (lookup[char] < lookup[first]) {
+      first = char;
+    } // bacially change first's value to char if char has a lower frequency than first in look up
+  }
+  return first; // return the first none repeating
+}
+
+// console.log(firstNoneRepeatingChar("leetcode"));
+// console.log(firstNoneRepeatingChar("lllllove"));
+// console.log(firstNoneRepeatingChar("that is a hell of a name, Ian"))
+
+///////////////////////////////////////////
+
 /*
 You are given a sorted unique integer array nums.
 
