@@ -18,14 +18,12 @@ function firstNoneRepeatingChar(str) {
   }
 
   // console.log(lookup);
-
-  for (let char in lookup) {
-    // Loop through look up object
-    if (lookup[char] < lookup[first]) {
-      first = char;
-    } // bacially change first's value to char if char has a lower frequency than first in look up
-  }
-  return first; // return the first none repeating
+  for (let char of str) {
+    if (lookup[char] === 1) {
+      return char; // return the first none repeating
+    }
+  } // Guaranteed to be the first in original string order
+  return null;
 }
 
 // console.log(firstNoneRepeatingChar("leetcode"));
