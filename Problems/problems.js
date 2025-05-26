@@ -1,5 +1,52 @@
 "use strict";
 
+/*
+Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+You must write an algorithm that runs in O(n) time and without using the division operation.
+*/
+
+function productExceptSelf(nums) {
+  const output = [];
+  // for (let i = 0; i < nums.length; i++) {
+  //   let product = 1;
+  //   for (let j = 0; j < nums.length; j++) {
+  //     if (nums[i] !== nums[j]) {
+  //       product *= nums[j];
+  //     }
+  //   }
+  //   output.push(product);
+  // }// Brute force method
+
+  let leftProduct = 1;
+  let rightProduct = 1;
+  const leftArr = [];
+  const rightArr = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    leftArr.push(leftProduct); // Save product so far
+    leftProduct *= nums[i]; // Update product with current value
+  }
+
+  for (let i = nums.length - 1; i >= 0; i--) {
+    rightArr.unshift(rightProduct); // put value at the start
+    rightProduct *= nums[i]; // Update product with current value
+  }
+  // console.log(leftArr);
+  // console.log(rightArr);
+  for (let i = 0; i < nums.length; i++) {
+    output.push(leftArr[i] * rightArr[i]);
+  }
+  return output;
+}
+
+// console.log(productExceptSelf([1, 2, 3, 4])); // [24, 12, 8, 6]
+// console.log(productExceptSelf([-1, 1, 0, -3, 3])); // [-0, 0, 9, -0, 0]
+
+///////////////////////////////////////////
+
 /*Return the first none repeating char in a string */
 
 function firstNoneRepeatingChar(str) {
