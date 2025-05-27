@@ -54,36 +54,28 @@ You must write an algorithm that runs in O(n) time and without using the divisio
 */
 
 function productExceptSelf(nums) {
-  const output = [];
-  // for (let i = 0; i < nums.length; i++) {
-  //   let product = 1;
-  //   for (let j = 0; j < nums.length; j++) {
-  //     if (nums[i] !== nums[j]) {
-  //       product *= nums[j];
-  //     }
-  //   }
-  //   output.push(product);
-  // }// Brute force method
+  const length = nums.length;
+  const output = new Array(length);
 
   let leftProduct = 1;
   let rightProduct = 1;
-  const leftArr = [];
-  const rightArr = [];
 
-  for (let i = 0; i < nums.length; i++) {
-    leftArr.push(leftProduct); // Save product so far
-    leftProduct *= nums[i]; // Update product with current value
+  //Calculate left product
+  for (let i = 0; i < length; i++) {
+    output[i] = leftProduct;
+    leftProduct *= nums[i];
   }
 
-  for (let i = nums.length - 1; i >= 0; i--) {
-    rightArr.unshift(rightProduct); // put value at the start
-    rightProduct *= nums[i]; // Update product with current value
+  // console.log(nums);
+
+  // console.log(output);
+
+  //Calculate right product
+  for (let i = length - 1; i >= 0; i--) {
+    output[i] *= rightProduct;
+    rightProduct *= nums[i];
   }
-  // console.log(leftArr);
-  // console.log(rightArr);
-  for (let i = 0; i < nums.length; i++) {
-    output.push(leftArr[i] * rightArr[i]);
-  }
+
   return output;
 }
 
