@@ -71,3 +71,33 @@ const res2 = numbers.every((item) => {
 const find = numbers.find((number) => number > 1);
 
 // console.log(find);
+
+// Spread and Rest operators
+const nums2 = [4, 5, 6, 7];
+
+// const final = numbers.concat(nums2);
+const final = [0, ...numbers, "mid", ...nums2, 100]; //Spread
+
+// console.log(final);
+
+function takeArgs(...args) {
+  return args;
+} //Rest
+
+// console.log(takeArgs(final, numbers));
+
+//Slice
+const newStrs = strs.slice(0, 2);
+const lastTwoStrs = strs.slice(-2);
+// console.log(newStrs);
+// console.log(lastTwoStrs);
+
+// Splice
+newStrs.splice(1, 1, "Alex");
+console.log(newStrs);
+
+//Flat
+const nest = [[1, 3, 5], 4, [[[23, 2]]]];
+
+const flat = nest.flat(5);
+console.log(flat);
