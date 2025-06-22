@@ -6,17 +6,17 @@ Given an array Arr of size N, return the second largest number from an array
 
 function secondLargestNum(arr) {
   if (arr.length < 2) return undefined;
-  const copy = [...arr];
-  const sorted = copy.sort((a, b) => a - b);
-  // return sorted;
-  let output = sorted[sorted.length - 1];
-  for (let i = sorted.length - 1; i >= 0; i--) {
-    if (output !== sorted[i]) {
-      output = sorted[i];
-      return output;
+  let first = -Infinity;
+  let second = -Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > first) {
+      second = first;
+      first = arr[i];
+    } else if (arr[i] > second && first !== arr[i]) {
+      second = arr[i];
     }
   }
-  return undefined;
+  return second === -Infinity ? undefined : second;
 }
 console.log(secondLargestNum([12, 35, 1, 10, 34, 36]));
 console.log(secondLargestNum([10, 5, 10]));
