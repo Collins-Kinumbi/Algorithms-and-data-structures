@@ -13,10 +13,20 @@ function rotateRight(arr, k) {
 
   const output = [...arr];
 
-  for (let i = k; i > 0; i--) {
-    let value = output.pop();
-    output.unshift(value);
+  function reverse(left, right) {
+    while (left < right) {
+      const temp = output[left];
+      output[left] = output[right];
+      output[right] = temp;
+      left++;
+      right--;
+    }
   }
+
+  reverse(0, output.length - 1); //First reverse the whole array
+  reverse(0, k - 1); //Second reverse the first k-1 items
+  reverse(k, output.length - 1); //Third reverse from K
+
   return output;
 }
 
