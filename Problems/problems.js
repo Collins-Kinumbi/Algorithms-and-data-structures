@@ -1,6 +1,29 @@
 "use strict";
 
 /*
+Given an integer array nums, rotate the array to the right by k steps where k is non negative
+*/
+
+function rotateRight(arr, k) {
+  if (k < 0) return "Should be non negative";
+
+  if (k > arr.length) {
+    k = k % arr.length; // 9 % 8 = 1
+  }
+
+  const output = [...arr];
+
+  for (let i = k; i > 0; i--) {
+    let value = output.pop();
+    output.unshift(value);
+  }
+  return output;
+}
+
+console.log(rotateRight([1, 2, 3, 4, 5, 6, 7], 3));
+console.log(rotateRight([-1, -100, 3, 99], 2));
+
+/*
 Given an array Arr of size N, return the second largest number from an array
 */
 
@@ -18,8 +41,8 @@ function secondLargestNum(arr) {
   }
   return second === -Infinity ? undefined : second;
 }
-console.log(secondLargestNum([12, 35, 1, 10, 34, 36]));
-console.log(secondLargestNum([10, 5, 10]));
+// console.log(secondLargestNum([12, 35, 1, 10, 34, 36]));
+// console.log(secondLargestNum([10, 5, 10]));
 
 /*
 Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
