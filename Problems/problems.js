@@ -1,6 +1,27 @@
 "use strict";
 
 /*
+Given an array Arr of size N, return the second largest number from an array
+*/
+
+function secondLargestNum(arr) {
+  if (arr.length < 2) return undefined;
+  const copy = [...arr];
+  const sorted = copy.sort((a, b) => a - b);
+  // return sorted;
+  let output = sorted[sorted.length - 1];
+  for (let i = sorted.length - 1; i >= 0; i--) {
+    if (output !== sorted[i]) {
+      output = sorted[i];
+      return output;
+    }
+  }
+  return undefined;
+}
+console.log(secondLargestNum([12, 35, 1, 10, 34, 36]));
+console.log(secondLargestNum([10, 5, 10]));
+
+/*
 Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, and return an array of the non-overlapping intervals that cover all the intervals in the input.
 */
 
@@ -27,21 +48,21 @@ function merge(intervals) {
   return merged;
 }
 
-console.log(
-  merge([
-    [1, 3],
-    [2, 6],
-    [8, 10],
-    [15, 18],
-  ])
-);
+// console.log(
+//   merge([
+//     [1, 3],
+//     [2, 6],
+//     [8, 10],
+//     [15, 18],
+//   ])
+// );
 
-console.log(
-  merge([
-    [1, 4],
-    [4, 5],
-  ])
-);
+// console.log(
+//   merge([
+//     [1, 4],
+//     [4, 5],
+//   ])
+// );
 
 //////////////////////////////////////////
 
